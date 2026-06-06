@@ -36,7 +36,7 @@ const Education = () => {
       institution: 'Sri Vidya Mandir Matriculation HSS',
       location: 'Namakkal, Tamil Nadu',
       period: '2022 — 2023',
-      grade: '81%',
+      grade: '81.5%',
       highlights: [
         'Active in Science Exhibitions',
         'Led school technology club',
