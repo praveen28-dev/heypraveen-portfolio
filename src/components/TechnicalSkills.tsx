@@ -1,4 +1,14 @@
 import { useEffect, useState } from 'react';
+import {
+  SiLinux, SiPython, SiGo, SiAmazonwebservices, SiOracle, SiGooglecloud,
+  SiTerraform, SiDocker, SiKubernetes,
+  SiGitlab, SiGithubactions,
+  SiPrometheus, SiGrafana,
+  SiPostgresql, SiRedis,
+} from 'react-icons/si';
+import { VscShield, VscLock } from 'react-icons/vsc';
+import { TbNetwork, TbCertificate, TbBinaryTree } from 'react-icons/tb';
+import { AiOutlineCloudServer } from 'react-icons/ai';
 
 const TechnicalSkills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,72 +26,24 @@ const TechnicalSkills = () => {
     return () => { if (element) observer.unobserve(element); };
   }, []);
 
-  const skillCategories = [
-    {
-      title: 'CLOUD PLATFORMS',
-      skills: [
-        { name: 'AWS', level: 90 },
-        { name: 'Oracle Cloud', level: 75 },
-        { name: 'Google Cloud', level: 50 },
-      ],
-    },
-    {
-      title: 'INFRASTRUCTURE AS CODE',
-      skills: [
-        { name: 'Terraform', level: 85 },
-        { name: 'CloudFormation', level: 70 },
-        { name: 'Ansible', level: 60 },
-      ],
-    },
-    {
-      title: 'CONTAINERS & ORCHESTRATION',
-      skills: [
-        { name: 'Docker', level: 85 },
-        { name: 'Kubernetes', level: 75 },
-        { name: 'Helm', level: 65 },
-      ],
-    },
-    {
-      title: 'CI/CD PIPELINES',
-      skills: [
-        { name: 'GitLab CI', level: 85 },
-        { name: 'GitHub Actions', level: 80 },
-        { name: 'Jenkins', level: 75 },
-      ],
-    },
-    {
-      title: 'MONITORING & OBSERVABILITY',
-      skills: [
-        { name: 'Prometheus', level: 75 },
-        { name: 'Grafana', level: 75 },
-        { name: 'CloudWatch', level: 80 },
-      ],
-    },
-    {
-      title: 'PROGRAMMING & SCRIPTING',
-      skills: [
-        { name: 'Python', level: 75 },
-        { name: 'Go', level: 60 },
-        { name: 'Bash', level: 85 },
-        { name: 'Boto3', level: 70 },
-      ],
-    },
-    {
-      title: 'DATABASES',
-      skills: [
-        { name: 'PostgreSQL', level: 70 },
-        { name: 'MongoDB', level: 60 },
-        { name: 'Redis', level: 55 },
-      ],
-    },
-    {
-      title: 'OS & NETWORKING',
-      skills: [
-        { name: 'Linux', level: 90 },
-        { name: 'VPC Design', level: 80 },
-        { name: 'DNS/SSL', level: 70 },
-      ],
-    },
+  const allSkills = [
+    { name: 'Go', icon: SiGo, color: '#00ADD8' },
+    { name: 'AWS', icon: SiAmazonwebservices, color: '#FF9900' },
+    { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+    { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
+    { name: 'Terraform', icon: SiTerraform, color: '#844FBA' },
+    { name: 'Linux / Bash', icon: SiLinux, color: 'var(--text-primary)' },
+    { name: 'Python', icon: SiPython, color: '#3776AB' },
+    { name: 'GitLab CI', icon: SiGitlab, color: '#FC6D26' },
+    { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088FF' },
+    { name: 'Prometheus', icon: SiPrometheus, color: '#E6522C' },
+    { name: 'Grafana', icon: SiGrafana, color: '#F46800' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+    { name: 'Redis', icon: SiRedis, color: '#DC382D' },
+    { name: 'Oracle Cloud', icon: SiOracle, color: '#F80000' },
+    { name: 'Google Cloud', icon: SiGooglecloud, color: '#4285F4' },
+    { name: 'CloudFormation', icon: AiOutlineCloudServer, color: '#FF9900' },
+    { name: 'CloudWatch', icon: SiAmazonwebservices, color: '#FF9900' },
   ];
 
   return (
@@ -96,44 +58,37 @@ const TechnicalSkills = () => {
           <div className="w-full h-[4px] bg-accent mt-4 max-w-xs" />
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {skillCategories.map((category, catIndex) => (
-            <div
-              key={category.title}
-              className={`border-2 border-accent bg-[var(--bg-panel)] p-5 shadow-[4px_4px_0px_0px_var(--accent)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_var(--accent)] transition-all duration-300 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              style={{ transitionDelay: `${200 + catIndex * 80}ms` }}
-            >
-              <h3 className="font-mono text-xs font-bold text-accent tracking-wider mb-4 pb-2 border-b-2 border-accent">
-                {category.title}
-              </h3>
-
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-mono text-sm font-bold text-primary-text">{skill.name}</span>
-                      <span className="font-mono text-xs font-bold text-secondary-text">{skill.level}%</span>
-                    </div>
-                    <div className="w-full h-2 bg-[var(--bg-elevated)] border border-accent/20">
-                      <div
-                        className="h-full bg-accent transition-all duration-1000 ease-out"
-                        style={{
-                          width: isVisible ? `${skill.level}%` : '0%',
-                          transitionDelay: `${400 + catIndex * 80 + skillIndex * 100}ms`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
+        {/* Skills Icon Grid - Single Flat Grid */}
+        <div className="flex flex-wrap gap-4 sm:gap-6 justify-center max-w-4xl mx-auto mt-8 relative z-20">
+          {allSkills.map((skill, index) => {
+            const IconComponent = skill.icon;
+            return (
+              <div
+                key={skill.name}
+                className={`relative group transition-all duration-300 hover:z-50 ${
+                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+                }`}
+                style={{ transitionDelay: `${200 + index * 30}ms` }}
+              >
+                <div
+                  className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-[var(--bg-panel)] rounded-md border-[3px] border-accent shadow-[4px_4px_0px_0px_var(--accent)] transition-all duration-200 cursor-default group-hover:-translate-y-1.5 group-hover:shadow-[5px_5px_0px_0px_var(--accent)]"
+                >
+                  <IconComponent
+                    className="text-3xl sm:text-4xl transition-transform duration-200"
+                    style={{ color: skill.color }}
+                  />
+                </div>
+                {/* Tooltip */}
+                <div
+                  className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[var(--accent)] text-white font-mono text-xs font-bold whitespace-nowrap pointer-events-none transition-all duration-200 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:-translate-y-1 z-50"
+                >
+                  {skill.name}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-accent" />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-
-
       </div>
     </section>
   );

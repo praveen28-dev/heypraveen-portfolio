@@ -18,10 +18,10 @@ const ProfessionalSummary = () => {
 
   const highlights = [
     { label: 'AWS Services', detail: 'EC2, EKS, Lambda, RDS, S3, IAM, VPC, CloudWatch' },
-    { label: 'IaC & Automation', detail: 'Terraform, CloudFormation, Ansible, Bash, Python' },
-    { label: 'Containers', detail: 'Docker, Kubernetes, Helm, ECS Fargate' },
-    { label: 'CI/CD', detail: 'GitLab CI, GitHub Actions, Jenkins, ArgoCD' },
-    { label: 'Monitoring', detail: 'Prometheus, Grafana, CloudWatch, ELK Stack' },
+    { label: 'IaC & Automation', detail: 'Terraform, CloudFormation,Python' },
+    { label: 'Containers', detail: 'Docker, Kubernetes' },
+    { label: 'CI/CD', detail: 'GitLab CI, GitHub Actions' },
+    { label: 'Monitoring', detail: 'Prometheus, Grafana, CloudWatch' },
     { label: 'Security', detail: 'IAM policies, Security Groups, VPC design, Secrets Manager' },
   ];
 
@@ -43,19 +43,19 @@ const ProfessionalSummary = () => {
           <div className="lg:col-span-3">
             <div className="space-y-4 text-sm sm:text-base text-secondary-text font-medium leading-relaxed bg-[var(--bg-panel)] p-6 sm:p-8 border-2 border-accent shadow-[6px_6px_0px_0px_var(--accent)]">
               <p>
-                I&apos;m a <span className="text-primary-text font-bold">B.Tech Information Technology student</span> at K S Rangasamy College of Technology, 
+                I&apos;m a <span className="text-primary-text font-bold">B.Tech Information Technology student</span> at K S Rangasamy College of Technology,
                 building a career in <span className="text-accent font-bold">Cloud Security, AWS Migration, and SRE</span>.
               </p>
               <p>
-                My focus is on designing <span className="text-primary-text font-bold">production-grade infrastructure</span> — 
-                from zero-downtime AWS migrations with Terraform to secured GitOps pipelines 
-                with GitLab CI/CD. I build systems that are 
+                My focus is on designing <span className="text-primary-text font-bold">production-grade infrastructure</span> —
+                from zero-downtime AWS migrations with Terraform to secured GitOps pipelines
+                with GitLab CI/CD. I build systems that are
                 <span className="text-accent-orange font-bold"> observable, resilient, and automated</span>.
               </p>
               <p>
-                I&apos;m <span className="text-accent font-bold">AWS & OCI certified</span>, 
-                experienced with Go-based tooling, and actively building 
-                production Kubernetes security projects. Available for 
+                I&apos;m <span className="text-accent font-bold">AWS & OCI certified</span>,
+                experienced with Go-based tooling, and actively building
+                production Kubernetes security projects. Available for
                 <span className="text-primary-text font-bold"> immediate joining</span>.
               </p>
 
@@ -84,9 +84,8 @@ const ProfessionalSummary = () => {
               {highlights.map((item, index) => (
                 <div
                   key={item.label}
-                  className={`border-l-4 border-accent bg-[var(--bg-panel)] p-3 shadow-[3px_3px_0px_0px_var(--accent)] hover:translate-x-1 transition-all duration-300 ${
-                    isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
-                  }`}
+                  className={`border-l-4 border-accent bg-[var(--bg-panel)] p-3 shadow-[3px_3px_0px_0px_var(--accent)] hover:translate-x-1 transition-all duration-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                    }`}
                   style={{ transitionDelay: `${300 + index * 80}ms` }}
                 >
                   <div className="font-mono text-xs font-bold text-accent uppercase tracking-wider">{item.label}</div>

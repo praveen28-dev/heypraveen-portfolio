@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Award, BookOpen } from 'lucide-react';
 
 const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -44,43 +44,39 @@ const Education = () => {
     },
   ];
 
-  const certifications = [
+  // Only professional-tier certifications — no foundational/associate duplicates
+  const professionalCerts = [
     {
       title: 'OCI Certified DevOps Professional',
       issuer: 'Oracle',
+      tier: 'PROFESSIONAL',
       date: '2025',
       url: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=D815F4701C1395B56EBA2991A6D1C6DB4D124E0E1D7C30F9CDF2B4328E3878EB',
+      relevance: 'Validates CI/CD pipeline design, container orchestration, and infrastructure automation on OCI',
     },
     {
       title: 'OCI Database Architect Professional',
       issuer: 'Oracle',
+      tier: 'PROFESSIONAL',
       date: 'Oct 2025',
       url: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=48DCA9766AF32A166F58106B7E6F132C15FC9814954C897C9D186DF6E3B546A2',
-    },
-    {
-      title: 'OCI AI Foundations Associate',
-      issuer: 'Oracle',
-      date: '2025',
-      url: 'https://catalog-education.oracle.com/apex/f?p=1010:2:106302833521560::::P2_AUTHCODE,P2_AUTH_KEY,P2_ARG_INVALID_CNT:MX238423qH73c,NtFPU238351Ytjh244ElkC,0',
-    },
-    {
-      title: 'Terraform',
-      issuer: 'Udemy',
-      date: 'Aug 2025',
-      url: 'https://www.udemy.com/certificate/UC-f452bc1b-656a-4536-94be-a7833351afee/',
-    },
-    {
-      title: 'AWS Bootcamp of DevOps',
-      issuer: 'Udemy',
-      date: 'Jun 2025',
-      url: 'https://www.udemy.com/certificate/UC-1eea3c49-5f33-4209-b5b3-b8a9801528c2/',
+      relevance: 'Covers multi-model database architecture, high availability design, and migration strategies',
     },
     {
       title: 'GCP Professional Cloud Architect',
       issuer: 'Google Cloud',
-      date: 'In Progress',
+      tier: 'IN PROGRESS',
+      date: 'Expected 2025',
       url: '#',
+      relevance: 'Multi-cloud architecture validation — designing scalable, secure, and reliable solutions on GCP',
     },
+  ];
+
+  // Complementary training — shown smaller, de-emphasized
+  const training = [
+    { title: 'Terraform – IaC Automation', source: 'Udemy', year: '2025' },
+    { title: 'AWS DevOps Bootcamp', source: 'Udemy', year: '2025' },
+    { title: 'OCI AI Foundations', source: 'Oracle', year: '2025' },
   ];
 
   return (
@@ -128,33 +124,64 @@ const Education = () => {
           ))}
         </div>
 
-        {/* Certifications */}
+        {/* Professional Certifications — Only highest tier */}
         <div className={`transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h3 className="font-mono text-sm font-bold uppercase tracking-widest text-accent mb-6 inline-block bg-[var(--bg-panel)] px-4 py-2 border-2 border-accent shadow-[4px_4px_0px_0px_var(--accent)]">
+          <h3 className="font-mono text-sm font-bold uppercase tracking-widest text-accent mb-6 inline-flex items-center gap-2 bg-[var(--bg-panel)] px-4 py-2 border-2 border-accent shadow-[4px_4px_0px_0px_var(--accent)]">
+            <Award className="w-4 h-4" />
             // PROFESSIONAL CERTIFICATIONS
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {certifications.map((cert, index) => (
+            {professionalCerts.map((cert, index) => (
               <a
                 key={cert.title + cert.issuer}
                 href={cert.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group border-2 border-accent bg-[var(--bg-panel)] p-4 sm:p-5 shadow-[4px_4px_0px_0px_var(--accent)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_var(--accent)] transition-all duration-300 flex items-start justify-between gap-3 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                className={`group border-2 border-accent bg-[var(--bg-panel)] shadow-[4px_4px_0px_0px_var(--accent)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_var(--accent)] transition-all duration-300 flex flex-col ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                 style={{ transitionDelay: `${500 + index * 80}ms` }}
               >
-                <div>
-                  <h4 className="font-mono text-sm font-bold text-primary-text leading-tight group-hover:text-accent transition-colors duration-200">
-                    {cert.title}
-                  </h4>
-                  <div className="flex items-center gap-2 mt-3">
+                <div className="p-4 sm:p-5 flex-1">
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <h4 className="font-mono text-sm font-bold text-primary-text leading-tight group-hover:text-accent transition-colors duration-200">
+                      {cert.title}
+                    </h4>
+                    <ExternalLink className="w-4 h-4 text-secondary-text group-hover:text-accent flex-shrink-0 mt-0.5 transition-colors duration-200" />
+                  </div>
+                  <p className="font-mono text-xs text-secondary-text leading-relaxed mb-3">
+                    {cert.relevance}
+                  </p>
+                  <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-accent bg-[var(--bg-elevated)] px-2 py-1 border border-accent/30">{cert.issuer}</span>
+                    <span className={`text-xs font-bold px-2 py-1 border ${
+                      cert.tier === 'PROFESSIONAL' 
+                        ? 'text-[var(--bg-panel)] bg-accent border-accent' 
+                        : 'text-secondary-text bg-[var(--bg-elevated)] border-accent/30'
+                    }`}>
+                      {cert.tier}
+                    </span>
                     <span className="text-xs font-bold text-secondary-text">{cert.date}</span>
                   </div>
                 </div>
-                <ExternalLink className="w-4 h-4 text-secondary-text group-hover:text-accent flex-shrink-0 mt-1 transition-colors duration-200" />
               </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Complementary Training — De-emphasized */}
+        <div className={`mt-8 transition-all duration-700 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-secondary-text mb-4 inline-flex items-center gap-2">
+            <BookOpen className="w-3.5 h-3.5" />
+            Complementary Training
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {training.map((t) => (
+              <span
+                key={t.title}
+                className="font-mono text-xs font-medium text-secondary-text bg-[var(--bg-elevated)] px-3 py-1.5 border border-accent/20"
+              >
+                {t.title} <span className="text-accent ml-1">({t.source}, {t.year})</span>
+              </span>
             ))}
           </div>
         </div>

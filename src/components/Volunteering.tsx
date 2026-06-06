@@ -80,7 +80,7 @@ export default function Volunteering() {
                   {exp.title}
                 </h3>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mt-3">
-                  <span className="font-mono text-xs font-bold text-[var(--bg-panel)] bg-accent px-2 py-1">{exp.org}</span>
+                  <span className="font-mono text-xs font-bold text-white bg-[var(--accent)] px-2 py-1">{exp.org}</span>
                   <span className="font-mono text-xs font-bold text-secondary-text">{exp.period}</span>
                 </div>
                 <div className="font-mono text-xs font-bold text-secondary-text mt-2">📍 {exp.location}</div>
